@@ -10,5 +10,11 @@
           dest: /tmp/
           mode: 0644
     - name: install nginx rpm from a local file
-      command: cd /tmp/ ; rpm -i nginx-1.11.0-1.el7.ngx.x86_64.rpm
+      yum:
+       name: /tmp/nginx-1.11.0-1.el7.ngx.x86_64.rpm
+    - name: service start nginx
+      service:
+        name: nginx
+        state: restarted
+        enabled: yes
        
