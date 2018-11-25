@@ -1,0 +1,14 @@
+---
+- name: install httpd
+  hosts: webservers
+  become: true
+  remote_user: ec2-user
+  tasks:
+    - name: install httpd 
+      yum:
+        name: 'http*'
+        state: absent 
+    - name: install vsftpd
+      yum: 
+        name: vsftpd
+        state: absent

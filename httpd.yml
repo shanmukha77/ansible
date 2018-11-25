@@ -1,0 +1,24 @@
+---
+- name: install httpd
+  hosts: webservers
+  become: true
+  remote_user: ec2-user
+  tasks:
+    - name: install httpd 
+      yum:
+        name: httpd
+        state: latest 
+    - name: install vsftpd
+      yum: 
+        name: vsftpd
+        state: latest
+    - name: start and enable httpd
+      service:  
+        name: httpd
+        state: started
+        enabled: true            
+    - name: start the enabled httpd
+      service: 
+         name: httpd
+         state: started
+         enabled: yes
