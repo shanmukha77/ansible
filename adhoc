@@ -1,1 +1,8 @@
-
+ansible webservers  -m command -a 'cat /etc/passwd' --key-file ssh.pem
+ansible webservers --list-hosts
+ansible all --list-hosts
+ansible webservers -m ping --extra-vars "ansible_user=root ansible_password=yourpassword"
+ansible webservers -m command -a 'rpm -q httpd' --key-file ssh.pem
+ansible webservers -m command -a 'service httpd start' --key-file ssh.pem
+ansible-playbook --syntax-check httpd.yml
+ansible-playbook httpd.yaml
