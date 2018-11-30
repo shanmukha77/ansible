@@ -1,0 +1,11 @@
+---
+- name: play to start the httpd
+  hosts: webservers
+  become: true
+  remote_user: ec2-user
+  tasks: 
+    - name: start httpd
+      service:
+         name: httpd
+         state: started
+         enabled: true
