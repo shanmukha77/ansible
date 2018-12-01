@@ -1,0 +1,11 @@
+---
+- name: play to collect the info
+  hosts: webserver
+  become: true
+  remote_user: ec2-user
+  tasks:
+    - name: collect the info
+      copy: 
+        content: "{{ ansible_hostname }} {{ansible_processor_count }}{{ansible_default_ipv4.address }} {{ ansible_default_ipv4.macaddress }}" 
+        dest: /root/hostinfo.txt     
+        
