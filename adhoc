@@ -7,3 +7,4 @@ ansible webservers -m command -a 'service httpd start' --key-file ssh.pem
 ansible-playbook --syntax-check httpd.yml
 ansible-playbook httpd.yaml
 ansible webserver -m ping -b -u ec2-user --key-file ssh.pem
+ansible --version
