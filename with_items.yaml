@@ -1,0 +1,45 @@
+---
+- name: loops for Ansible
+  hosts: webserver
+  become: true
+  remote_user: centos
+  tasks:
+     - name: add several users
+       user:
+         name: "{{ item }}"
+         state: present
+       with_items:
+          - testuser1
+          - testuser2
+          - testuser3
+          - testuser4
+          - testuser5
+          - testuser6
+
+     - name: create a group
+       group:
+         name: "{{ item }}"
+         state: present
+       with_items:
+         - dev
+         - serverops
+         - cloudops
+     - name: more complex items to add several users
+       user:
+          name: "{{ item }}"
+          groups: dev,serverops
+          append: yes
+       with_items:
+         - testuser1
+         - testuser2
+         - testuser3
+
+     - name: more complex items to add several users
+       user:
+          name: "{{ item }}"
+          groups: cloudops
+          append: yes
+       with_items:
+         - testuser4
+         - testuser5
+         - testuser6
