@@ -1,0 +1,16 @@
+---
+- name: remove the user from group
+  hosts: webserver
+  become: true
+  remote_user: centos
+  tasks:
+     - name: remove user from cloudops list
+       user:
+        name: "{{ item }}"
+        state: present
+        groups: cloudops
+        remove: yes
+       with_items:
+         - testuser4
+         - testuser5
+         - testuser6
